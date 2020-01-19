@@ -85,17 +85,17 @@
     # deque([1])
 
 
-import fractions
+from fractions import gcd
 # 最大公約数
     a = [1, 2, 3, 3, 3, 4, 4, 6, 6, 6, 6]
     ans = a[0]
     for i in range(1, N):
-        ans = fractions.gcd(ans, a[i])
+        ans = gcd(ans, a[i])
 
 # 最小公倍数
     ans = a[0]
     for i in range(1, N):
-        ans = ans * a[i] // fractions.gcd(ans, a[i])
+        ans = ans * a[i] // gcd(ans, a[i])
 
 
 # 文字をアスキーコードへ
