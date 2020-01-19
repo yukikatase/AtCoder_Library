@@ -142,16 +142,24 @@ def is_prime(n):
 
 
 # 素因数分解
-def trial_division(n):
-    factor = []
-    tmp = int(math.sqrt(n)) + 1
-    for num in range(2,tmp):
-        while n % num == 0:
-            n //= num
-            factor.append(num)
-    if n!=1:
-        factor.append(n)
-    return factor
+def factorization(n):
+    arr = []
+    temp = n
+    for i in range(2, int(-(-n**0.5//1))+1):
+        if temp%i==0:
+            cnt=0
+            while temp%i==0:
+                cnt+=1
+                temp //= i
+            arr.append([i, cnt])
+
+    if temp!=1:
+        arr.append([temp, 1])
+
+    if arr==[]:
+        arr.append([n, 1])
+
+    return arr
 
 
 # Union Find
