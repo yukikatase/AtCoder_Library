@@ -133,11 +133,9 @@ for i in range( 2, N + 1 ):
 # 素数判定
 def is_prime(n):
     if n == 1: return False
-
     for k in range(2, int(math.sqrt(n)) + 1):
         if n % k == 0:
             return False
-
     return True
 
 
@@ -152,13 +150,10 @@ def factorization(n):
                 cnt+=1
                 temp //= i
             arr.append([i, cnt])
-
     if temp!=1:
         arr.append([temp, 1])
-
     if arr==[]:
         arr.append([n, 1])
-
     return arr
 
 
