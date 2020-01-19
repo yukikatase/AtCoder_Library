@@ -86,16 +86,14 @@ d.popleft()
 
 
 from fractions import gcd
-# 最大公約数
-a = [1, 2, 3, 3, 3, 4, 4, 6, 6, 6, 6]
-ans = a[0]
-for i in range(1, N):
-    ans = gcd(ans, a[i])
-
 # 最小公倍数
-ans = a[0]
-for i in range(1, N):
-    ans = ans * a[i] // gcd(ans, a[i])
+l = 1
+def lcm(l, num):
+    return l * num // gcd(l, num)
+# 例
+l=1
+for i in range(n):
+    l=lcm(l, a[i])
 
 
 # 文字をアスキーコードへ
