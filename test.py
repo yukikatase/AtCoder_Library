@@ -71,7 +71,7 @@ heapq.heapreplace(A, a)
 
 
 # 双方向リスト
-from collections import deque
+from collections import *
 d=deque()
 d.append(1)
 d.append(2)
