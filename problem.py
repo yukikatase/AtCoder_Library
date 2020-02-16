@@ -7,5 +7,7 @@ from itertools import permutations,accumulate,combinations,product
 from fractions import gcd
 def input():
     return sys.stdin.readline()[:-1]
+def ruiseki(lst):
+    return [0]+list(accumulate(lst))
 mod=pow(10,9)+7
 
