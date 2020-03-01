@@ -228,3 +228,56 @@ def Z_algo(S):
             c = i
     LCP[0] = n
     return LCP
+
+# seg木
+class SegTree:
+    # init_valはseg木にしたいlist、ide_eleは単位元
+    # """
+    # 単位元の説明
+    # 最小値のセグ木 → 10**9　(最小値の更新に影響しないため)
+    # 　　和のセグ木 → 0　(上の単位元の説明を参照)
+    # 　　積のセグ木 → 1　(上の単位元の説明を参照)
+    # 　　gcdのセグ木 → 0　(gcdを更新しない値は0)
+    # """
+    def __init__(self, init_val, ide_ele):
+        self.ide_ele=ide_ele
+        self.num=2**(len(init_val)-1).bit_length()
+        self.seg=[self.ide_ele]*2*self.num
+
+        #set_val
+        for i in range(len(init_val)):
+            self.seg[i+self.num-1]=init_val[i]
+        #built
+        for i in range(self.num-2,-1,-1) :
+            self.seg[i]=self.segfunc(self.seg[2*i+1],self.seg[2*i+2])
+
+    # 書け
+    def segfunc(self, x, y):
+        return 
+    
+    def update(self, k, x):
+        k += self.num-1
+        self.seg[k] = x
+        while k:
+            k = (k-1)//2
+            self.seg[k] = self.segfunc(self.seg[k*2+1],self.seg[k*2+2])
+
+    def query(self, p, q):
+        if q<=p:
+            return self.ide_ele
+        p += self.num-1
+        q += self.num-2
+        res=self.ide_ele
+        while q-p>1:
+            if p&1 == 0:
+                res = self.segfunc(res,self.seg[p])
+            if q&1 == 1:
+                res = self.segfunc(res,self.seg[q])
+                q -= 1
+            p = p//2
+            q = (q-1)//2
+        if p == q:
+            res = self.segfunc(res,self.seg[p])
+        else:
+            res = self.segfunc(self.segfunc(res,self.seg[p]),self.seg[q])
+        return res
