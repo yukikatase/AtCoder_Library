@@ -187,8 +187,8 @@ class WeightedUnionFind:
     def same(self, x, y):
         return self.find(x) == self.find(y)
 
-def diff(self, x, y):
-    return self.weight[x] - self.weight[y]
+    def diff(self, x, y):
+        return self.weight[x] - self.weight[y]
 
 
 # ワーシャルフロイド
