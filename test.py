@@ -173,7 +173,7 @@ class WeightedUnionFind:
             self.par[x] = y
             return y
 
-    def union(self, x, y, w):
+    def union(self, x, y, w=1):
         rx = self.find(x)
         ry = self.find(y)
         if self.rank[rx] < self.rank[ry]:
