@@ -313,4 +313,3 @@ class SegTree:
             res = self.segfunc(self.segfunc(res,self.seg[p]),self.seg[q])
         return res
 ```
-
