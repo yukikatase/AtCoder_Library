@@ -190,7 +190,7 @@ def factorization(n):
     return arr
 ```
 
-## Union findクラス
+## Union find
 
 ```python
 class WeightedUnionFind:
