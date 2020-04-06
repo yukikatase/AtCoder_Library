@@ -254,6 +254,8 @@ print(warshall_floyd(d))
 
 ## ダイクストラ
 
+### ふつうの
+
 ```python
 def dijkstra(s,n,w,cost):
     #始点sから各頂点への最短距離
@@ -288,6 +290,51 @@ for i in range(w):
     cost[x][y] = z
     cost[y][x] = z
 print(dijkstra(0,n,w,cost))
+```
+
+### 経路復元
+
+```python
+def dijkstra_back(s,t,n,w,cost):
+    #sからtへの最短経路の経路復元
+    prev = [s] * n #最短経路の直前の頂点
+    d = [float("inf")] * n
+    used = [False] * n
+    d[s] = 0
+    
+    while True:
+        v = -1
+        for i in range(n):
+            if (not used[i]) and (v == -1):
+               v = i
+            elif (not used[i]) and d[i] < d[v]:
+                v = i
+        if v == -1:
+               break
+        used[v] = True
+        
+        for i in range(n):
+            if d[i] > d[v] + cost[v][i]: 
+                d[i] = d[v] + cost[v][i]
+                prev[i] = v
+        
+    path = [t]
+    while prev[t] != s:
+        path.append(prev[t])
+        prev[t] = prev[prev[t]]
+    path.append(s)
+    path = path[::-1]
+    return path
+
+################################
+n,w = map(int,input().split()) #n:頂点数　w:辺の数
+
+cost = [[float("inf") for i in range(n)] for i in range(n)] 
+#cost[u][v] : 辺uvのコスト(存在しないときはinf この場合は10**10)
+for i in range(w):
+    x,y,z = map(int,input().split())
+    cost[x][y] = z
+    cost[y][x] = z
 ```
 
 ## Zアルゴリズム
