@@ -337,6 +337,37 @@ for i in range(w):
     cost[y][x] = z
 ```
 
+## ベルマンフォード
+
+```python
+#True : 負の経路が存在する
+def find_negative_loop(n,w,es):
+    #負の経路の検出
+    #n:頂点数, w:辺の数, es[i]: [辺の始点,辺の終点,辺のコスト]
+    d = [float("inf")] * n
+    d[0] = 0 
+    #この始点はどこでもよい
+    for i in range(n):
+        for j in range(w):
+            e = es[j]
+            if d[e[1]] > d[e[0]] + e[2]:
+                d[e[1]] = d[e[0]] + e[2]
+                if i == n-1:
+                    return True
+    return False
+
+
+#############################
+n,w = map(int,input().split()) #n:頂点数　w:辺の数
+es = [[] for i in range(2*w)] #es[i]: [辺の始点,辺の終点,辺のコスト]
+for i in range(w):
+    x,y,z = map(int,input().split())
+    es[2*i] = [x,y,z]
+    es[2*i+1] = [y,x,z]
+w = w*2
+print(find_negative_loop(n,w,es))
+```
+
 ## Zアルゴリズム
 
 ```python
