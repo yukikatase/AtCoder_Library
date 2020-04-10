@@ -474,8 +474,8 @@ edge = [[] for i in range(n)]
 #隣接リスト edge[i]:[コスト,行先]
 for i in range(w):
     x,y,z = map(int,input().split())
-    edge[x].append([z,y])
-    edge[y].append([z,x])
+    edge[x].append((z,y))
+    edge[y].append((z,x))
 print(prim_heap())
 ```
 
