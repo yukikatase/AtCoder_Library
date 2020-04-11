@@ -15,6 +15,7 @@ def ruiseki(lst):
     return [0]+list(accumulate(lst))
 mod=pow(10,9)+7
 al=[chr(ord('a') + i) for i in range(26)]
+direction=[[1,0],[0,1],[-1,0],[0,-1]]
 
 ```
 
