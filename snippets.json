@@ -1,0 +1,87 @@
+{
+	// Place your snippets for python here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"input()": {
+		"prefix": "input()",
+		"body": [
+			"input()",
+		],
+		"description": "input()"
+	},
+	"int(input())": {
+		"prefix": "int(input())",
+		"body": [
+			"int(input())",
+		],
+		"description": "input()"
+	},
+	"input().split()": {
+		"prefix": "input().split()",
+		"body": [
+			"input().split()",
+		],
+		"description": "input().split()"
+	},
+	"map(int,input().split())": {
+		"prefix": "map(int,input().split())",
+		"body": [
+			"map(int,input().split())",
+		],
+		"description": "map(int,input().split())"
+	},
+	"list(input().split())": {
+		"prefix": "list(input().split())",
+		"body": [
+			"list(input().split())",
+		],
+		"description": "list(input().split())"
+	},
+	"list(map(int,input().split()))": {
+		"prefix": "list(map(int,input().split()))",
+		"body": [
+			"list(map(int,input().split()))",
+		],
+		"description": "list(map(int,input().split()))"
+	},
+	"[list(map(int,input().split())) for i in range(n)]": {
+		"prefix": "list_map_for",
+		"body": [
+			"[list(map(int,input().split())) for i in range(${1:n})]",
+			"$0",
+		],
+		"description": "[list(map(int,input().split())) for i in range(n)]"
+	},
+	"for_enter": {
+		"prefix": "for _ in range(_) enter",
+		"body": [
+			"for $1 in range($2):",
+			"    $0",
+		],
+		"description": "for _ in range(_) enter"
+	},
+	"for_no_enter": {
+		"prefix": "for _ in range(_) no enter",
+		"body": [
+			"for $1 in range($2)$0",
+		],
+		"description": "for _ in range(_) no enter"
+	},
+	"float(inf)": {
+		"prefix": "inf",
+		"body": [
+			"float('inf')",
+		],
+		"description": "float(inf)"
+	},
+}
