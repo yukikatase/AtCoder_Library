@@ -249,7 +249,7 @@ for i in range(w):
     d[y][x] = z
 for i in range(n):
     d[i][i] = 0 #自身のところに行くコストは０
-print(warshall_floyd(d))
+warshall_floyd(d)
 ```
 
 ## ダイクストラ
@@ -289,7 +289,7 @@ for i in range(w):
     x,y,z = map(int,input().split())
     cost[x][y] = z
     cost[y][x] = z
-print(dijkstra(0,n,w,cost))
+dijkstra(0,n,w,cost)
 ```
 
 ### 経路復元
@@ -476,6 +476,6 @@ for i in range(w):
     x,y,z = map(int,input().split())
     edge[x].append((z,y))
     edge[y].append((z,x))
-print(prim_heap())
+prim_heap()
 ```
 
