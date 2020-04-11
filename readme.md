@@ -6,6 +6,7 @@ from collections import *
 import heapq
 import math
 import bisect
+import copy
 from itertools import permutations,accumulate,combinations,product
 from fractions import gcd
 def input():
