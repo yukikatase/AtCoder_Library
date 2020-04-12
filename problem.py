@@ -2,10 +2,10 @@ import sys
 from collections import *
 import heapq
 import math
+from math import gcd
 import bisect
 import copy
 from itertools import permutations,accumulate,combinations,product
-from fractions import gcd
 def input():
     return sys.stdin.readline()[:-1]
 def ruiseki(lst):
