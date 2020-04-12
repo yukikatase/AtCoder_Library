@@ -127,7 +127,6 @@ heapq.heapreplace(A, a)
 ## 最小公倍数
 
 ```python
-from fractions import gcd
 # 最小公倍数
 l = 1
 def lcm(l, num):
