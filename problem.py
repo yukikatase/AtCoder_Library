@@ -1,11 +1,11 @@
-import sys
-from collections import *
-import heapq
-import math
-from math import gcd
 import bisect
 import copy
-from itertools import permutations,accumulate,combinations,product
+import heapq
+import math
+import sys
+from collections import *
+from itertools import accumulate, combinations, permutations, product
+from math import gcd
 def input():
     return sys.stdin.readline()[:-1]
 def ruiseki(lst):
