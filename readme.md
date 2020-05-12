@@ -480,3 +480,51 @@ for i in range(w):
 prim_heap()
 ```
 
+## LCA(最小共通祖先)
+
+```python
+from collections import *
+class lca:
+  	## rootは根の頂点で0からのインデックス
+    ## childlstは子のリスト
+    ## 例：[[1, 2], [3, 4], [5, 6], [], [], [], []]
+    def __init__(self,root,childlst):
+        self.n=len(childlst)
+        self.log_n=(self.n-1).bit_length()
+        self.parent=[[-1]*n for i in range(self.log_n)]
+        self.depth=[-1]*n
+
+        d=deque([[root,-1,0]])
+        while d:
+            v,prnt,dpth=d.popleft()
+            self.parent[0][v]=prnt
+            self.depth[v]=dpth
+            for i in range(len(childlst[v])):
+                d.append([childlst[v][i],v,dpth+1])
+        
+        for i in range(self.log_n-1):
+            for j in range(self.n):
+                if self.parent[i][j]<0:
+                    self.parent[i+1][j]=-1
+                else:
+                    self.parent[i+1][j]=self.parent[i][self.parent[i][j]]
+        
+    ## uとvは0始めのインデックス
+    def find_lca(self,u,v):
+        # vが深い方,uが浅い方
+        if self.depth[u]>self.depth[v]:
+            u,v=v,u
+        for i in range(self.log_n):
+            if (self.depth[v]-self.depth[u])>>i&1:
+                v=self.parent[i][v]
+
+        if u==v:
+            return u
+        
+        for i in range(self.log_n)[::-1]:
+            if self.parent[i][u]!=self.parent[i][v]:
+                u=self.parent[i][u]
+                v=self.parent[i][v]
+        
+        return self.parent[0][u]
+```
