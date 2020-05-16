@@ -464,7 +464,7 @@ class SegTree:
 
 ```python
 import heapq
-def prim_heap():
+def prim_heap(edge):
     used = [True] * n #True:不使用
     edgelist = []
     for e in edge[0]:
@@ -492,7 +492,7 @@ for i in range(w):
     x,y,z = map(int,input().split())
     edge[x].append((z,y))
     edge[y].append((z,x))
-prim_heap()
+prim_heap(edge)
 ```
 
 ## LCA(最小共通祖先)
