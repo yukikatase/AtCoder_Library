@@ -202,7 +202,7 @@ def make_divisors(n):
             if i != n // i:
                 divisors.append(n//i)
 
-    # divisors.sort()
+    divisors.sort()
     return divisors
 ```
 
