@@ -62,6 +62,22 @@
 		],
 		"description": "[list(map(int,input().split())) for i in range(n)]"
 	},
+	"[int(input()) for i in range(n)]": {
+		"prefix": "list_for(int)",
+		"body": [
+			"[int(input()) for i in range(${1:n})]",
+			"$0",
+		],
+		"description": "[int(input()) for i in range(n)]"
+	},
+	"[input() for i in range(n)]": {
+		"prefix": "list_for(str)",
+		"body": [
+			"[input() for i in range(${1:n})]",
+			"$0",
+		],
+		"description": "[input() for i in range(n)]"
+	},
 	"for_enter": {
 		"prefix": "for _ in range(_) enter",
 		"body": [
