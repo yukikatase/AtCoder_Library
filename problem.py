@@ -6,7 +6,6 @@ import sys
 from collections import *
 from functools import lru_cache
 from itertools import accumulate, combinations, permutations, product
-from math import gcd
 def input():
     return sys.stdin.readline()[:-1]
 def ruiseki(lst):
