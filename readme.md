@@ -432,10 +432,15 @@ class SegTree:
     # 　　積のセグ木 → 1　(上の単位元の説明を参照)
     # 　　gcdのセグ木 → 0　(gcdを更新しない値は0)
     # """
-    def __init__(self, init_val, ide_ele):
+    # funcは行いたい操作を代入
+    # 区間の最小値を求めたいならmin
+    # 区間の最大値を求めたいならmax
+    # """
+    def __init__(self, init_val, ide_ele, func):
         self.ide_ele=ide_ele
         self.num=2**(len(init_val)-1).bit_length()
         self.seg=[self.ide_ele]*2*self.num
+        self.func=func
 
         #set_val
         for i in range(len(init_val)):
@@ -446,7 +451,7 @@ class SegTree:
 
     # 書け
     def segfunc(self, x, y):
-        return 
+        return self.func(x,y)
     
     def update(self, k, x):
         k += self.num-1
