@@ -490,6 +490,7 @@ class BIT:
         self.n = n
         self.data = [0]*(n+1)
         self.el = [0]*(n+1)
+    # [1,i]の足し算
     def sum(self, i):
         s = 0
         while i > 0:
@@ -502,10 +503,11 @@ class BIT:
         while i <= self.n:
             self.data[i] += x
             i += i & -i
+    # [i,j]の足し算
     def get(self, i, j=None):
         if j is None:
             return self.el[i]
-        return self.sum(j) - self.sum(i)
+        return self.sum(j) - self.sum(i-1)
 ```
 
 
