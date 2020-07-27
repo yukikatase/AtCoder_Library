@@ -294,39 +294,38 @@ warshall_floyd(d)
 ### ふつうの
 
 ```python
-def dijkstra(s,n,w,cost):
+def dijkstra_heap(s,edge):
     #始点sから各頂点への最短距離
-    #n:頂点数,　w:辺の数, cost[u][v] : 辺uvのコスト(存在しないときはinf)
-    d = [float("inf")] * n
-    used = [False] * n
+    d = [10**20] * n
+    used = [True] * n #True:未確定
     d[s] = 0
-    
-    while True:
-        v = -1
+    used[s] = False
+    edgelist = []
+    for a,b in edge[s]:
+        heapq.heappush(edgelist,a*(10**6)+b)
+    while len(edgelist):
+        minedge = heapq.heappop(edgelist)
         #まだ使われてない頂点の中から最小の距離のものを探す
-        for i in range(n):
-            if (not used[i]) and (v == -1):
-               v = i
-            elif (not used[i]) and d[i] < d[v]:
-                v = i
-        if v == -1:
-               break
-        used[v] = True
-               
-        for j in range(n):
-               d[j] = min(d[j],d[v]+cost[v][j])
+        if not used[minedge%(10**6)]:
+            continue
+        v = minedge%(10**6)
+        d[v] = minedge//(10**6)
+        used[v] = False
+        for e in edge[v]:
+            if used[e[1]]:
+                heapq.heappush(edgelist,(e[0]+d[v])*(10**6)+e[1])
     return d
 
 ################################
 n,w = map(int,input().split()) #n:頂点数　w:辺の数
 
-cost = [[float("inf") for i in range(n)] for i in range(n)] 
-#cost[u][v] : 辺uvのコスト(存在しないときはinf この場合は10**10)
+edge = [[] for i in range(n)]
+#edge[i] : iから出る道の[重み,行先]の配列
 for i in range(w):
     x,y,z = map(int,input().split())
-    cost[x][y] = z
-    cost[y][x] = z
-dijkstra(0,n,w,cost)
+    edge[x].append([z,y])
+    edge[y].append([z,x]) 
+print(dijkstra_heap(0))
 ```
 
 ### 経路復元
