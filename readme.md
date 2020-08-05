@@ -325,7 +325,7 @@ for i in range(w):
     x,y,z = map(int,input().split())
     edge[x].append([z,y])
     edge[y].append([z,x]) 
-print(dijkstra_heap(0))
+print(dijkstra_heap(0,edge))
 ```
 
 ### 経路復元
@@ -614,4 +614,3 @@ for i in range(len(seq)):
 
 print(len(LIS))
 ```
-
