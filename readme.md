@@ -613,3 +613,57 @@ for i in range(len(seq)):
 
 print(len(LIS))
 ```
+
+## 謎FFT
+
+```python
+n=int(input())
+ab=[list(map(int,input().split())) for i in range(n)]
+
+po=1
+while 2*n>=po:
+    po*=2
+
+a,b=[0]*po,[0]*po
+for i in range(n):
+    a[i+1]=ab[i][0]
+    b[i+1]=ab[i][1]
+
+# print(po)
+def fft(f,n,ii=1):
+    if n==1:
+        return f
+    f0=[f[2*i+0] for i in range(n//2)]
+    f1=[f[2*i+1] for i in range(n//2)]
+
+    f0=fft(f0,n//2,ii)
+    f1=fft(f1,n//2,ii)
+
+    zeta=complex(math.cos(2*math.pi/n), math.sin(2*math.pi/n)*ii)
+    pow_zeta=1
+    for i in range(n):
+        f[i]=f0[i%(n//2)]+pow_zeta*f1[i%(n//2)]
+        pow_zeta*=zeta
+    return f
+
+def i_fft(f,n):
+    f=fft(f,n,-1)
+    for i in range(n):
+        f[i]=f[i]/po
+    return f
+
+a2=fft(a,po)
+b2=fft(b,po)
+
+ab=[0]*po
+for i in range(po):
+    ab[i]=a2[i]*b2[i]
+
+c=i_fft(ab,po)
+
+
+for i in range(1,1+n*2):
+    # print(c[i],c[i].real,round(c[i].real))
+    print(round(c[i].real))
+```
+
