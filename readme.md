@@ -190,19 +190,31 @@ def factorization(n):
     return arr
 ```
 
-## 素因数分解(エストラテネス済み)
+## 素因数分解(エラトステネス済み)
 
 ```python
+def era_primes(n):
+    is_prime = [-1] * (n + 1)
+    is_prime[1]=1
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]!=-1:
+            continue
+        for j in range(i * 2, n + 1, i):
+            if is_prime[j]==-1:
+                is_prime[j] = i
+    for i in range(n):
+        if is_prime[i+1]==-1:
+            is_prime[i+1]=i+1
+    return is_prime
+
 def factorize(N,prime_list):  # prime_listに素数のリストをぶち込め！
     lst = []
-    for p in prime_list:
-        if p * p > N:
-            break
-        while N % p == 0:
-            N //= p
-            lst.append(p)
-    if N > 1:
-        lst.append(N)
+    # N==1のときも
+    # if N==1:
+    #     lst.append(1)
+    while prime_list[N]!=1:
+        lst.append(prime_list[N])
+        N//=prime_list[N]
     return lst
 ```
 
