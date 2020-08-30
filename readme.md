@@ -190,6 +190,22 @@ def factorization(n):
     return arr
 ```
 
+## 素因数分解(エストラテネス済み)
+
+```python
+def factorize(N,prime_list):  # prime_listに素数のリストをぶち込め！
+    lst = []
+    for p in prime_list:
+        if p * p > N:
+            break
+        while N % p == 0:
+            N //= p
+            lst.append(p)
+    if N > 1:
+        lst.append(N)
+    return lst
+```
+
 ## 約数列挙
 
 ```python
