@@ -129,7 +129,7 @@ heapq.heapreplace(A, a)
 # 最小公倍数
 l = 1
 def lcm(l, num):
-    return l * num // gcd(l, num)
+    return l * num // math.gcd(l, num)
 # 例
 l=1
 for i in range(n):
