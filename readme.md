@@ -294,6 +294,7 @@ class WeightedUnionFind:
 ## ワーシャルフロイド
 
 ```python
+# O(V**3)
 def warshall_floyd(d):
     #d[i][j]: iからjへの最短距離
     for k in range(n):
@@ -320,6 +321,7 @@ warshall_floyd(d)
 ### ふつうの
 
 ```python
+# O(E+Vlog(V))
 def dijkstra(s):
     hq = [(0, s)]
     heapq.heapify(hq) # リストを優先度付きキューに変換
@@ -393,6 +395,7 @@ for i in range(w):
 ## ベルマンフォード
 
 ```python
+# O(VE)
 #True : 負の経路が存在する
 def find_negative_loop(n,w,es):
     #負の経路の検出
