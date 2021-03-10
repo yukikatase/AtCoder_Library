@@ -6,8 +6,16 @@ def input():
     return sys.stdin.readline()[:-1]
 def ruiseki(lst):
     return [0]+list(accumulate(lst))
-def celi(a,b):
+def ceil(a,b):
     return -(-a//b)
+def create_graph(N,edge):
+    g=[[] for i in range(N)]
+    for i,j in edge:
+        i-=1
+        j-=1
+        g[i].append(j)
+        g[j].append(j)
+    return g
 sys.setrecursionlimit(5000000)
 mod=pow(10,9)+7
 al=[chr(ord('a') + i) for i in range(26)]
