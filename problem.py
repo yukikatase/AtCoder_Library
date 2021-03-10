@@ -11,10 +11,9 @@ def ceil(a,b):
 def create_graph(N,edge):
     g=[[] for i in range(N)]
     for i,j in edge:
-        i-=1
-        j-=1
+        i,j=i-1,j-1
         g[i].append(j)
-        g[j].append(j)
+        g[j].append(i)
     return g
 sys.setrecursionlimit(5000000)
 mod=pow(10,9)+7
