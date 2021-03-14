@@ -17,7 +17,7 @@ def create_graph(N,edge):
     return g
 sys.setrecursionlimit(5000000)
 mod=pow(10,9)+7
-INF = 1 << 30
+INF = 1 << 100
 al=[chr(ord('a') + i) for i in range(26)]
 direction=[[1,0],[0,1],[-1,0],[0,-1]]
 
