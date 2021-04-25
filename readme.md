@@ -231,44 +231,57 @@ def primes(n):
 ## Union find
 
 ```python
-class WeightedUnionFind:
+class UnionFind():
     def __init__(self, n):
-        self.par = [i for i in range(n+1)]
-        self.rank = [0] * (n+1)
-        self.weight = [0] * (n+1)
-        self.sizes = [1] * (n+1)
-
+        self.n = n
+        self.parents = [-1] * n
+        self.group_num = n
+ 
     def find(self, x):
-        if self.par[x] == x:
+        if self.parents[x] < 0:
             return x
         else:
-            y = self.find(self.par[x])
-            self.weight[x] += self.weight[self.par[x]]
-            self.par[x] = y
-            return y
-
-    def union(self, x, y, w=1):
-        rx = self.find(x)
-        ry = self.find(y)
-        if self.rank[rx] < self.rank[ry]:
-            self.sizes[ry] += self.size(rx)
-            self.par[rx] = ry
-            self.weight[rx] = w - self.weight[x] + self.weight[y]
-        else:
-            self.sizes[rx] += self.size(ry)
-            self.par[ry] = rx
-            self.weight[ry] = -w - self.weight[y] + self.weight[x]
-            if self.rank[rx] == self.rank[ry]:
-                self.rank[rx] += 1
-
+            self.parents[x] = self.find(self.parents[x])
+            return self.parents[x]
+ 
+    def union(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+ 
+        if x == y:
+            return
+ 
+        self.group_num -= 1
+        if self.parents[x] > self.parents[y]:
+            x, y = y, x
+ 
+        self.parents[x] += self.parents[y]
+        self.parents[y] = x
+ 
+    def size(self, x):
+        return -self.parents[self.find(x)]
+ 
     def same(self, x, y):
         return self.find(x) == self.find(y)
-
-    def diff(self, x, y):
-        return self.weight[x] - self.weight[y]
-
-    def size(self, x):
-        return self.sizes[self.find(x)]
+ 
+    def members(self, x):
+        root = self.find(x)
+        return [i for i in range(self.n) if self.find(i) == root]
+ 
+    def roots(self):
+        return [i for i, x in enumerate(self.parents) if x < 0]
+ 
+    def group_count(self):
+        return self.group_num
+ 
+    def all_group_members(self):
+        self.all_group_member = defaultdict(list)
+        for i in range(self.n):
+            self.all_group_member[self.find(i)].append(i)
+        return self.all_group_member
+ 
+    def __str__(self):
+        return '\n'.join('{}: {}'.format(r, self.members(r)) for r in self.roots())
 ```
 
 ## ワーシャルフロイド
